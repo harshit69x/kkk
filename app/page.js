@@ -1,101 +1,179 @@
-import Image from "next/image";
+"use client";
+import { useScroll, useTransform } from "framer-motion";
+import React from "react";
+import { GoogleGeminiEffect } from "../components/ui/google-gemini-effect";
+import { MaskContainer } from "../components/ui/svg-mask-effect";
+import { Vortex } from "../components/ui/vortex";
+import { HeroParallaxDemo } from "@/components/HeroParallaxDemo";
+import { HeroParallax } from "../components/ui/hero-parallax";
+import { MacbookScrollDemo } from "@/components/ui/MacbookScrollDemo";
+import { NavbarDemo } from "@/components/NavbarDemo";
+export default function GoogleGeminiEffectDemo() {
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const src ="https://images.unsplash.com/photo-1721332154373-17e78d19b4a4?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-export default function Home() {
+  const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
+  const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
+  const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
+  const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
+  const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
+  const products = [
+    {
+      title: "Moonbeam",
+      link: "https://gomoonbeam.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
+    },
+    {
+      title: "Cursor",
+      link: "https://cursor.so",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/cursor.png",
+    },
+    {
+      title: "Rogue",
+      link: "https://userogue.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/rogue.png",
+    },
+  
+    {
+      title: "Editorially",
+      link: "https://editorially.org",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/editorially.png",
+    },
+    {
+      title: "Editrix AI",
+      link: "https://editrix.ai",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/editrix.png",
+    },
+    {
+      title: "Pixel Perfect",
+      link: "https://app.pixelperfect.quest",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
+    },
+  
+    {
+      title: "Algochurn",
+      link: "https://algochurn.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/algochurn.png",
+    },
+    {
+      title: "Aceternity UI",
+      link: "https://ui.aceternity.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/aceternityui.png",
+    },
+    {
+      title: "Tailwind Master Kit",
+      link: "https://tailwindmasterkit.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
+    },
+    {
+      title: "SmartBridge",
+      link: "https://smartbridgetech.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
+    },
+    {
+      title: "Renderwork Studio",
+      link: "https://renderwork.studio",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
+    },
+  
+    {
+      title: "Creme Digital",
+      link: "https://cremedigital.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/cremedigital.png",
+    },
+    {
+      title: "Golden Bells Academy",
+      link: "https://goldenbellsacademy.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png",
+    },
+    {
+      title: "Invoker Labs",
+      link: "https://invoker.lol",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/invoker.png",
+    },
+    {
+      title: "E Free Invoice",
+      link: "https://efreeinvoice.com",
+      thumbnail:
+        "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
+    },
+  ];
+        
+  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <><div
+      className="h-[400vh] bg-black w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
+      ref={ref}>
+      <GoogleGeminiEffect
+        pathLengths={[
+          pathLengthFirst,
+          pathLengthSecond,
+          pathLengthThird,
+          pathLengthFourth,
+          pathLengthFifth,
+        ]} />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    </div><div className="h-[40rem] w-full flex items-center justify-center  overflow-hidden">
+        <MaskContainer
+          revealText={<p className="max-w-4xl mx-auto text-slate-800 text-center  text-4xl font-bold">
+            The first rule of MRR Club is you do not talk about MRR Club. The
+            second rule of MRR Club is you DO NOT talk about MRR Club.
+          </p>}
+          className="h-[40rem] border rounded-md"
+        >
+          The first rule of <span className="text-red-500">MRR Club</span> is you
+          do not talk about MRR Club. The second rule of MRR Club is you DO NOT
+          talk about <span className="text-red-500">MRR Club</span>.
+        </MaskContainer>
+      </div>
+      <div className="w-[calc(100%-4rem)] mx-auto rounded-md  h-screen overflow-hidden">
+      <Vortex
+        backgroundColor="black"
+        rangeY={800}
+        particleCount={500}
+        baseHue={120}
+        className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
+      >
+        <h2 className="text-white text-2xl md:text-6xl font-bold text-center">
+          The hell is this?
+        </h2>
+        <p className="text-white text-sm md:text-2xl max-w-xl mt-6 text-center">
+          This is chemical burn. It&apos;ll hurt more than you&apos;ve ever been
+          burned and you&apos;ll have a scar.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
+          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white shadow-[0px_2px_0px_0px_#FFFFFF40_inset]">
+            Order now
+          </button>
+          <button className="px-4 py-2  text-white ">Watch trailer</button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </Vortex>
+        
+
     </div>
+ <HeroParallax products={products} />;
+
+ <MacbookScrollDemo src={src}/>
+ <NavbarDemo/>
+
+       </>
   );
 }
